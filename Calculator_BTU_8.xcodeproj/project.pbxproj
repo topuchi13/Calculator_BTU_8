@@ -13,6 +13,7 @@
 		0D9C8CF32704D71C00F1B788 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C8CF12704D71C00F1B788 /* Main.storyboard */; };
 		0D9C8CF52704D71D00F1B788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C8CF42704D71D00F1B788 /* Assets.xcassets */; };
 		0D9C8CF82704D71D00F1B788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D9C8CF62704D71D00F1B788 /* LaunchScreen.storyboard */; };
+		0D9C8D002704F98300F1B788 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9C8CFF2704F98300F1B788 /* ResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0D9C8CF42704D71D00F1B788 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D9C8CF72704D71D00F1B788 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D9C8CF92704D71D00F1B788 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D9C8CFF2704F98300F1B788 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,30 @@
 			children = (
 				0D9C8CEB2704D71C00F1B788 /* AppDelegate.swift */,
 				0D9C8CED2704D71C00F1B788 /* SceneDelegate.swift */,
-				0D9C8CEF2704D71C00F1B788 /* ViewController.swift */,
-				0D9C8CF12704D71C00F1B788 /* Main.storyboard */,
+				0D9C8D012704F99B00F1B788 /* Controllers */,
+				0D9C8D022704F9B100F1B788 /* View */,
 				0D9C8CF42704D71D00F1B788 /* Assets.xcassets */,
-				0D9C8CF62704D71D00F1B788 /* LaunchScreen.storyboard */,
 				0D9C8CF92704D71D00F1B788 /* Info.plist */,
 			);
 			path = Calculator_BTU_8;
+			sourceTree = "<group>";
+		};
+		0D9C8D012704F99B00F1B788 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0D9C8CEF2704D71C00F1B788 /* ViewController.swift */,
+				0D9C8CFF2704F98300F1B788 /* ResultsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0D9C8D022704F9B100F1B788 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0D9C8CF12704D71C00F1B788 /* Main.storyboard */,
+				0D9C8CF62704D71D00F1B788 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 				0D9C8CF02704D71C00F1B788 /* ViewController.swift in Sources */,
 				0D9C8CEC2704D71C00F1B788 /* AppDelegate.swift in Sources */,
 				0D9C8CEE2704D71C00F1B788 /* SceneDelegate.swift in Sources */,
+				0D9C8D002704F98300F1B788 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

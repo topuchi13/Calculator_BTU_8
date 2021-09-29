@@ -9,12 +9,17 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // Variable to store whatever is on the display
     var displayValue: String = "0" {
         didSet {
                 resultValue.text = displayValue
         }
     }
     
+    //Store Calculation history
+    var calculationHistory: [String] = []
+    
+    // Variable to save user input
     var inputNumbers: String = "" {
         didSet {
             if inputNumbers == "" {
@@ -36,6 +41,7 @@ class ViewController: UIViewController {
     @IBOutlet var resultValue: UILabel!
     
     @IBAction func basicOperators(_ sender: UIButton) {
+        
         // Keep track of first and second variables of operation
 
         if variableA == nil {
@@ -57,7 +63,8 @@ class ViewController: UIViewController {
         sign = sender.currentTitle!
     }
     
-    // Does basic calculation
+    
+    // Handles basic calculations (+,*,-,/)
     func calculate(_ a: Double, _ b: Double, _ sign: String) -> Double {
         switch sign {
         case "÷":
@@ -73,6 +80,7 @@ class ViewController: UIViewController {
         }
         return 0
     }
+    
     
     // Manages number input
     @IBAction func blueButtons(_ sender: UIButton) {
@@ -111,7 +119,7 @@ class ViewController: UIViewController {
     @IBAction func grayButtons(_ sender: UIButton) {
         switch sender.currentTitle {
         case "%":
-            let answer = String((Double(inputNumbers) ?? 0000000) / Double(100))
+            let answer = String((Double(displayValue) ?? 0000000) / Double(100))
             print (answer)
             inputNumbers = answer
         case "+/-":
@@ -154,6 +162,13 @@ class ViewController: UIViewController {
         return finalResult
         }
     
+    // Pass calculation history to ResultsViewController via Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is ResultsViewController {
+            let controller = segue.destination as! ResultsViewController
+            controller.historyContainer = calculationHistory
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
