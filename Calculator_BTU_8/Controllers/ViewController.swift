@@ -9,10 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet var resultValue: UILabel!
+    
     // Variable to store whatever is on the display
     var displayValue: String = "0" {
         didSet {
-                resultValue.text = displayValue
+            resultValue.text = displayValue
         }
     }
     
@@ -29,7 +31,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     // Placeholders for operands
     var equalsWasPressed: Bool = false
     var variableA: Double?
@@ -37,13 +39,10 @@ class ViewController: UIViewController {
     var sign: String = ""
     
     
-    
-    @IBOutlet var resultValue: UILabel!
-    
     @IBAction func basicOperators(_ sender: UIButton) {
         
         // Keep track of first and second variables of operation
-
+        
         if variableA == nil {
             print ("Set variable A")
             variableA = Double(displayValue) ?? 11111111
@@ -66,6 +65,7 @@ class ViewController: UIViewController {
     
     // Handles basic calculations (+,*,-,/)
     func calculate(_ a: Double, _ b: Double, _ sign: String) -> Double {
+        calculationHistory += [removeZerosFromEnd(String(a)), sign, removeZerosFromEnd(String(b)), "="]
         switch sign {
         case "÷":
             return a/b
@@ -104,8 +104,8 @@ class ViewController: UIViewController {
             variableB = Double(displayValue) ?? 11111111
             print ("Calculating: \(self.variableA!) \(sign) \(self.variableB!)")
             let tempResult = calculate(self.variableA!, self.variableB!, sign)
-        //    inputNumbers = ""
             displayValue = removeZerosFromEnd(String(tempResult))
+            calculationHistory += [displayValue]
             print(tempResult)
             variableA = nil
             variableB = nil
@@ -117,17 +117,22 @@ class ViewController: UIViewController {
     
     // Defines actions for every gray button pressed
     @IBAction func grayButtons(_ sender: UIButton) {
+        if calculationHistory == [] {
+            calculationHistory.append(displayValue)
+        }
+        calculationHistory.append(sender.currentTitle!)
         switch sender.currentTitle {
         case "%":
             let answer = String((Double(displayValue) ?? 0000000) / Double(100))
             print (answer)
+            calculationHistory.append(answer)
             inputNumbers = answer
         case "+/-":
             let answer: String
-            if !inputNumbers.contains(".") {
-                answer = String(-(Int(inputNumbers) ?? 111111111))
+            if !displayValue.contains(".") {
+                answer = String(-(Int(displayValue) ?? 111111111))
             } else {
-                answer = String(-(Double(inputNumbers) ?? 111111111))
+                answer = String(-(Double(displayValue) ?? 111111111))
             }
             print (answer)
             inputNumbers = answer
@@ -160,7 +165,8 @@ class ViewController: UIViewController {
             }
         }
         return finalResult
-        }
+    }
+    
     
     // Pass calculation history to ResultsViewController via Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -170,12 +176,13 @@ class ViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         resultValue.text = String(displayValue)
     }
-
+    
 }
 
 
